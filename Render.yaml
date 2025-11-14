@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: n8n-service
+    env: docker
+    plan: standard
+    autoDeploy: true
+    envVars:
+      - key: N8N_PORT
+        value: 5678
+      - key: N8N_HOST
+        value: 0.0.0.0
+      - key: N8N_PROTOCOL
+        value: https
+      - key: WEBHOOK_URL
+        value: https://your-domain.onrender.com/
+      - key: N8N_LOG_LEVEL
+        value: debug
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+      - key: GENERIC_TIMEZONE
+        value: Asia/Kolkata
