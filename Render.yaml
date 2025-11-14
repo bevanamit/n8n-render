@@ -12,7 +12,7 @@ services:
       - key: N8N_PROTOCOL
         value: https
       - key: WEBHOOK_URL
-        value: https://your-domain.onrender.com/
+        value: https://n8n-render-4p4f.onrender.com
       - key: N8N_LOG_LEVEL
         value: debug
       - key: N8N_ENCRYPTION_KEY
