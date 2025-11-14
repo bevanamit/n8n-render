@@ -1,41 +1,50 @@
 services:
-  - type: web
-    name: n8n-render
-    env: docker
-    plan: standard
+  - name: n8n-render
+    type: web
+    runtime: image
+    repo: https://github.com/bevanamit/n8n-render.git
+    image:
+      url: docker.io/n8nio/n8n:latest
+    region: oregon
+    plan: free
     autoDeploy: true
 
     envVars:
+      - key: N8N_PUBLIC_URL
+        value: "https://n8n-render-4p4f.onrender.com/"
+
+      - key: N8N_PROTOCOL
+        value: "https"
+
       - key: N8N_HOST
-        value: n8n-render-4p4f.onrender.com
+        value: "n8n-render-4p4f.onrender.com"
+
       - key: N8N_PORT
         value: "443"
-      - key: N8N_PROTOCOL
-        value: https
 
-      # Correct domain-based URLs
       - key: WEBHOOK_URL
-        value: https://n8n-render-4p4f.onrender.com/
-      - key: N8N_EDITOR_BASE_URL
-        value: https://n8n-render-4p4f.onrender.com/
-      - key: VUE_APP_URL_BASE_API
-        value: https://n8n-render-4p4f.onrender.com/
+        value: "https://n8n-render-4p4f.onrender.com/"
 
-      # Auth (optional but recommended)
+      - key: N8N_EDITOR_BASE_URL
+        value: "https://n8n-render-4p4f.onrender.com/"
+
+      - key: VUE_APP_URL_BASE_API
+        value: "https://n8n-render-4p4f.onrender.com/"
+
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
-      - key: N8N_BASIC_AUTH_USER
-        value: admin
-      - key: N8N_BASIC_AUTH_PASSWORD
-        value: strongpassword
 
-      # Encryption key (important)
+      - key: N8N_BASIC_AUTH_USER
+        value: "admin"
+
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: "strongpassword"
+
+      - key: GENERIC_TIMEZONE
+        value: "Asia/Kolkata"
+
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
-      
-      # Timezone
-      - key: GENERIC_TIMEZONE
-        value: Asia/Kolkata
 
     disk:
       name: n8n-data
